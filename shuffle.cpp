@@ -5,6 +5,10 @@ CARD_COUNT is the constant 52
 cards_ is an array of pointers to cards
 */
 
+#include "Card.h"
+
+/*
+
 void shuffle(){
 	int n = CARD_COUNT;
 
@@ -16,3 +20,5 @@ void shuffle(){
 		cards_[k] = c;
 	}
 }
+
+*/
