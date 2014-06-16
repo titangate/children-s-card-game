@@ -12,6 +12,10 @@
 		BB10BDE6194A3236008C8E50 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDE1194A3236008C8E50 /* Card.cpp */; };
 		BB10BDE7194A3236008C8E50 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDE3194A3236008C8E50 /* Command.cpp */; };
 		BB10BDE8194A3236008C8E50 /* shuffle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDE5194A3236008C8E50 /* shuffle.cpp */; };
+		BB510F8F194F6DFF000012E5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F8D194F6DFF000012E5 /* Player.cpp */; };
+		BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F90194F6F63000012E5 /* HumanPlayer.cpp */; };
+		BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F93194F6FE7000012E5 /* ComputerPlayer.cpp */; };
+		BB510F98194F7E32000012E5 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F96194F7E32000012E5 /* Deck.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +40,14 @@
 		BB10BDE3194A3236008C8E50 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Command.cpp; path = ../../Command.cpp; sourceTree = "<group>"; };
 		BB10BDE4194A3236008C8E50 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = ../../Command.h; sourceTree = "<group>"; };
 		BB10BDE5194A3236008C8E50 /* shuffle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shuffle.cpp; path = ../../shuffle.cpp; sourceTree = "<group>"; };
+		BB510F8D194F6DFF000012E5 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../../Player.cpp; sourceTree = "<group>"; };
+		BB510F8E194F6DFF000012E5 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../../Player.h; sourceTree = "<group>"; };
+		BB510F90194F6F63000012E5 /* HumanPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HumanPlayer.cpp; path = ../../HumanPlayer.cpp; sourceTree = "<group>"; };
+		BB510F91194F6F63000012E5 /* HumanPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HumanPlayer.h; path = ../../HumanPlayer.h; sourceTree = "<group>"; };
+		BB510F93194F6FE7000012E5 /* ComputerPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ComputerPlayer.cpp; path = ../../ComputerPlayer.cpp; sourceTree = "<group>"; };
+		BB510F94194F6FE7000012E5 /* ComputerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputerPlayer.h; path = ../../ComputerPlayer.h; sourceTree = "<group>"; };
+		BB510F96194F7E32000012E5 /* Deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Deck.cpp; path = ../../Deck.cpp; sourceTree = "<group>"; };
+		BB510F97194F7E32000012E5 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Deck.h; path = ../../Deck.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +87,14 @@
 				BB10BDE5194A3236008C8E50 /* shuffle.cpp */,
 				BB10BDD8194A3184008C8E50 /* main.cpp */,
 				BB10BDDA194A3184008C8E50 /* straights.1 */,
+				BB510F8D194F6DFF000012E5 /* Player.cpp */,
+				BB510F8E194F6DFF000012E5 /* Player.h */,
+				BB510F90194F6F63000012E5 /* HumanPlayer.cpp */,
+				BB510F91194F6F63000012E5 /* HumanPlayer.h */,
+				BB510F93194F6FE7000012E5 /* ComputerPlayer.cpp */,
+				BB510F94194F6FE7000012E5 /* ComputerPlayer.h */,
+				BB510F96194F7E32000012E5 /* Deck.cpp */,
+				BB510F97194F7E32000012E5 /* Deck.h */,
 			);
 			path = straights;
 			sourceTree = "<group>";
@@ -130,10 +150,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB510F98194F7E32000012E5 /* Deck.cpp in Sources */,
+				BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */,
+				BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */,
 				BB10BDD9194A3184008C8E50 /* main.cpp in Sources */,
 				BB10BDE8194A3236008C8E50 /* shuffle.cpp in Sources */,
 				BB10BDE7194A3236008C8E50 /* Command.cpp in Sources */,
 				BB10BDE6194A3236008C8E50 /* Card.cpp in Sources */,
+				BB510F8F194F6DFF000012E5 /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
