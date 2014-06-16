@@ -13,16 +13,24 @@
 #include "Card.h"
 #include <vector>
 
+class invalid_play : public std::exception {
+};
+
 class Player {
 public:
-    std::vector<Card*> getHand();
-    std::vector<Card*> getDiscard();
+    std::vector<Card*>& getHand();
+    std::vector<Card*>& getDiscard();
     virtual void pollCommand() = 0;
     int getScore();
     void setHand(const std::vector<Card*>);
+    Card *findCard(Suit suit, Rank rank);
+    virtual ~Player(){}
 private:
     std::vector<Card*> hand_;
     std::vector<Card*> discard_;
+protected:
+    void play(Suit suit, Rank rank);
+    void discard(Suit suit, Rank rank);
 };
 
 #endif /* defined(__straights__Player__) */

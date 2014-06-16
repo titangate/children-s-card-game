@@ -12,6 +12,12 @@
 #include <iostream>
 #include "Player.h"
 
+class rage_quit : public std::exception {
+};
+
+class quit : public std::exception {
+};
+
 class HumanPlayer : public Player {
 public:
     void pollCommand();

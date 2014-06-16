@@ -16,7 +16,8 @@ class Deck {
 public:
     Card* getCardAtIndex(int i);
     void shuffle();
-
+    void reset();
+    
 private:
     std::vector<Card *> cards_;
 };

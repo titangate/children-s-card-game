@@ -16,6 +16,7 @@
 		BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F90194F6F63000012E5 /* HumanPlayer.cpp */; };
 		BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F93194F6FE7000012E5 /* ComputerPlayer.cpp */; };
 		BB510F98194F7E32000012E5 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F96194F7E32000012E5 /* Deck.cpp */; };
+		BB510F9B194F882F000012E5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F99194F882F000012E5 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		BB510F94194F6FE7000012E5 /* ComputerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputerPlayer.h; path = ../../ComputerPlayer.h; sourceTree = "<group>"; };
 		BB510F96194F7E32000012E5 /* Deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Deck.cpp; path = ../../Deck.cpp; sourceTree = "<group>"; };
 		BB510F97194F7E32000012E5 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Deck.h; path = ../../Deck.h; sourceTree = "<group>"; };
+		BB510F99194F882F000012E5 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../Game.cpp; sourceTree = "<group>"; };
+		BB510F9A194F882F000012E5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../Game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				BB510F94194F6FE7000012E5 /* ComputerPlayer.h */,
 				BB510F96194F7E32000012E5 /* Deck.cpp */,
 				BB510F97194F7E32000012E5 /* Deck.h */,
+				BB510F99194F882F000012E5 /* Game.cpp */,
+				BB510F9A194F882F000012E5 /* Game.h */,
 			);
 			path = straights;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB510F9B194F882F000012E5 /* Game.cpp in Sources */,
 				BB510F98194F7E32000012E5 /* Deck.cpp in Sources */,
 				BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */,
 				BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */,

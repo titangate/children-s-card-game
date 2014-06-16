@@ -10,12 +10,6 @@
 #include "Card.h"
 
 void Deck::shuffle() {
-    cards_.clear();
-    for (int rank = ACE; rank != RANK_COUNT; rank++) {
-        for (int suit = CLUB; suit != SUIT_COUNT; suit++) {
-            cards_.push_back(new Card((Suit)(suit), (Rank)(rank)));
-        }
-    }
     int n = cards_.size();
     
 	while ( n > 1 ) {
@@ -25,5 +19,21 @@ void Deck::shuffle() {
 		cards_[n] = cards_[k];
 		cards_[k] = c;
 	}
+}
 
+void Deck::reset() {
+    for (int i = 0; i < cards_.size(); i++) {
+        delete cards_[i];
+    }
+    cards_.clear();
+    
+    for (int rank = ACE; rank != RANK_COUNT; rank++) {
+        for (int suit = CLUB; suit != SUIT_COUNT; suit++) {
+            cards_.push_back(new Card((Suit)(suit), (Rank)(rank)));
+        }
+    }
+}
+
+Card* Deck::getCardAtIndex(int i) {
+    return cards_[i];
 }
