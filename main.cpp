@@ -99,14 +99,16 @@ bool runRound(vector<Player *>& players) {
     }
     if (gameOver) {
         int minimum = 1023456789;
-        Player *winner = NULL;
         for (int i = 0; i < players.size(); i++) {
             if (minimum > scores[i]) {
-                winner = players[i];
                 minimum = scores[i];
             }
         }
-        cout << "Player " << winner->getName() << " wins!" << endl;
+        for (int i = 0; i < players.size(); i++) {
+            if (minimum == scores[i]) {
+                cout << "Player " << players[i]->getName() << " wins!" << endl;
+            }
+        }
     }
     return gameOver;
 }
