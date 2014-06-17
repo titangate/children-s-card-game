@@ -17,6 +17,7 @@
 #include "Deck.h"
 #include "Game.h"
 #include <sstream>
+#include <cstdlib>
 
 using namespace std;
 

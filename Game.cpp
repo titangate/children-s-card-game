@@ -8,6 +8,7 @@
 
 #include "Game.h"
 #include "Card.h"
+#include <cstdlib>
 
 using namespace std;
 

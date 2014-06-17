@@ -9,6 +9,8 @@
 #include "Deck.h"
 #include "Card.h"
 #include <iostream>
+#include <cstdlib>
+
 
 using namespace std;
 
