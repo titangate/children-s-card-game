@@ -17,8 +17,14 @@ void printCardsInSuit(const string &name, const vector<Card*> cards) {
     cout << name << ":";
     const string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "J", "Q", "K"};
+    bool rankExist[RANK_COUNT] = {false};
     for (int i = 0; i < cards.size(); i++) {
-        cout << " " << ranks[(int)cards[i]->getRank()];
+        rankExist[(int)cards[i]->getRank()] = true;
+    }
+    for (int i = 0; i < RANK_COUNT; i++) {
+        if (rankExist[i]) {
+            cout << " " << ranks[i];
+        }
     }
     cout << endl;
 }
@@ -62,7 +68,7 @@ void HumanPlayer::pollCommand() {
     cout << endl;
     
     vector<Card*> valids = getLegalPlays();
-    cout << "Legal plays:";
+    cout << "Legal Plays:";
     for (int i = 0; i < valids.size(); i++) {
         cout << " " << *valids[i];
     }
