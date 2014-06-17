@@ -81,8 +81,16 @@ bool runRound(vector<Player *> players) {
     static int scores[4] = {0,0,0,0};
     int gameOver = false;
     for (int i = 0; i < players.size(); i++) {
-        
-        scores[i] += players[i]->getScore();
+        cout << "Player " << players[i]->getName() << "'s discards:";
+        std::vector<Card*>& discards = players[i]->getDiscard();
+        for (int i = 0; i < discards.size(); i++) {
+            cout << " " << *discards[i];
+        }
+        cout << endl;
+        int scoreThisRound = players[i]->getScore();
+        cout << "Player " << players[i]->getName() << "'s score: " << scores[i] << " + " << scoreThisRound << " = ";
+        scores[i] += scoreThisRound;
+        cout << scores[i] << endl;
         gameOver |= (scores[i] >= 80);
     }
     return gameOver;
@@ -99,6 +107,8 @@ int main(int argc, const char * argv[])
         Game::getInstance().setSeed(44);
     }
     Game::getInstance().setSeed(44);
+    
+    Game::getInstance().getDeck().reset();
     
     while (!runRound(players)) {
     }

@@ -23,7 +23,6 @@ void Game::reset() {
     playField_[(int)DIAMOND][(int)SEVEN] = true;
     sevenOfSpadePlayed_ = false;
     
-    deck_.reset();
     deck_.shuffle();
 }
 

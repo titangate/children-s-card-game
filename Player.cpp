@@ -40,6 +40,7 @@ Card* Player::findCard(Suit suit, Rank rank) {
 
 void Player::setHand(const std::vector<Card*> hand) {
     hand_ = hand;
+    discard_.clear();
 }
 
 void Player::play(Suit suit, Rank rank) {
