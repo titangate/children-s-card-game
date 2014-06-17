@@ -38,7 +38,7 @@ Card* Player::findCard(Suit suit, Rank rank) {
     return NULL;
 }
 
-void Player::setHand(const std::vector<Card*> hand) {
+void Player::setHand(const std::vector<Card*>& hand) {
     hand_ = hand;
     discard_.clear();
 }
@@ -89,6 +89,10 @@ vector<Card*> Player::getLegalPlays() {
 
 void Player::setName(const std::string& name) {
     name_ = name;
+}
+
+void Player::setDiscard(const std::vector<Card*>& discard) {
+    discard_ = discard;
 }
 
 std::string Player::getName() {

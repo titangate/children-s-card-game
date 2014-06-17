@@ -23,7 +23,8 @@ public:
     std::vector<Card*> getLegalPlays();
     virtual void pollCommand() = 0;
     int getScore();
-    void setHand(const std::vector<Card*>);
+    void setHand(const std::vector<Card*>&);
+    void setDiscard(const std::vector<Card*>&);
     Card *findCard(Suit suit, Rank rank);
     virtual ~Player(){}
     void setName(const std::string& name);

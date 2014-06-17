@@ -48,17 +48,17 @@ int dealDeck(vector<Player*> players) {
         for (int j = 0; j < 13; j++) {
             Card *card = deck.getCardAtIndex(i * 13 + j);
             hand.push_back(card);
-            players[i]->setHand(hand);
             
             if (card->getRank() == SEVEN && card->getSuit() == SPADE) {
                 starterIndex = i;
             }
         }
+        players[i]->setHand(hand);
     }
     return starterIndex;
 }
 
-bool runRound(vector<Player *> players) {
+bool runRound(vector<Player *>& players) {
     Game::getInstance().reset();
     int starterIndex = dealDeck(players);
     cout << "A new round begins. It's player "<< players[starterIndex]->getName() <<"'s turn to play." << endl;
@@ -72,8 +72,12 @@ bool runRound(vector<Player *> players) {
         } catch (rage_quit e) {
             cout << "Player "<< players[currentIndex]->getName() << " ragequits. A computer will now take over." << endl;
             Player *player = players[currentIndex];
+            Player *newPlayer = new ComputerPlayer();
+            players[currentIndex] = newPlayer;
+            newPlayer->setHand(player->getHand());
+            newPlayer->setName(player->getName());
+            newPlayer->setDiscard(player->getDiscard());
             delete player;
-            players[currentIndex] = new ComputerPlayer();
             i--;
         }
     }
@@ -82,7 +86,7 @@ bool runRound(vector<Player *> players) {
     int gameOver = false;
     for (int i = 0; i < players.size(); i++) {
         cout << "Player " << players[i]->getName() << "'s discards:";
-        std::vector<Card*>& discards = players[i]->getDiscard();
+        std::vector<Card*> discards = players[i]->getDiscard();
         for (int i = 0; i < discards.size(); i++) {
             cout << " " << *discards[i];
         }
@@ -93,13 +97,23 @@ bool runRound(vector<Player *> players) {
         cout << scores[i] << endl;
         gameOver |= (scores[i] >= 80);
     }
+    if (gameOver) {
+        int minimum = 1023456789;
+        Player *winner = NULL;
+        for (int i = 0; i < players.size(); i++) {
+            if (minimum > scores[i]) {
+                winner = players[i];
+                minimum = scores[i];
+            }
+        }
+        cout << "Player " << winner->getName() << " wins!" << endl;
+    }
     return gameOver;
 }
 
 int main(int argc, const char * argv[])
 {
     vector<Player*> players = invitePlayers();
-    
     
     if (argc > 1) {
         Game::getInstance().setSeed(atol(argv[1]));
@@ -111,8 +125,11 @@ int main(int argc, const char * argv[])
     
     while (!runRound(players)) {
     }
-    // following procedure would handle ragequit
-    //players[2].reset(new ComputerPlayer());
+    
+    for (int i = 0; i < players.size(); i++) {
+        delete players[i];
+    }
+    
     return 0;
 }
 

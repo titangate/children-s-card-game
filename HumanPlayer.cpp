@@ -13,14 +13,47 @@
 
 using namespace std;
 
+void printCardsInSuit(const string &name, const vector<Card*> cards) {
+    cout << name << ":";
+    const string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
+		"7", "8", "9", "10", "J", "Q", "K"};
+    for (int i = 0; i < cards.size(); i++) {
+        cout << " " << ranks[(int)cards[i]->getRank()];
+    }
+    cout << endl;
+}
+
 void HumanPlayer::pollCommand() {
     Game &game = Game::getInstance();
     cout << "Cards on the table:" << endl;
+    vector<Card*> clubs, diamonds, hearts, spades;
+    
     const vector<Card *>& cards = game.getCardsPlayed();
     for (int i = 0; i < cards.size(); i++) {
-        cout << " " << *cards[i];
+        switch (cards[i]->getSuit()) {
+            case CLUB:
+                clubs.push_back(cards[i]);
+                break;
+                
+            case DIAMOND:
+                diamonds.push_back(cards[i]);
+                break;
+            
+            case HEART:
+                hearts.push_back(cards[i]);
+                break;
+            
+            case SPADE:
+                spades.push_back(cards[i]);
+                break;
+            
+            default:break;
+        }
     }
-    cout << endl;
+    printCardsInSuit("Clubs", clubs);
+    printCardsInSuit("Diamonds", diamonds);
+    printCardsInSuit("Hearts", hearts);
+    printCardsInSuit("Spades", spades);
     
     cout << "Your hand:";
     for (int i = 0; i < getHand().size(); i++) {
