@@ -17,6 +17,7 @@ public:
     Card* getCardAtIndex(int i);
     void shuffle();
     void reset();
+    void print();
     
 private:
     std::vector<Card *> cards_;

@@ -7,7 +7,17 @@
 //
 
 #include "ComputerPlayer.h"
+#include <vector>
+
+using namespace std;
 
 void ComputerPlayer::pollCommand() {
-    
+    vector<Card*> legalPlays = getLegalPlays();
+    if (legalPlays.size() > 0) {
+        Card *card = legalPlays[0];
+        play(card->getSuit(), card->getRank());
+    } else {
+        Card *card = getHand()[0];
+        discard(card->getSuit(), card->getRank());
+    }
 }

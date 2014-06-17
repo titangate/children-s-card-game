@@ -17,26 +17,41 @@ void Game::reset() {
             playField_[i][j] = false;
         }
     }
+    playField_[(int)CLUB][(int)SEVEN] = true;
     playField_[(int)SPADE][(int)SEVEN] = true;
+    playField_[(int)HEART][(int)SEVEN] = true;
+    playField_[(int)DIAMOND][(int)SEVEN] = true;
+    sevenOfSpadePlayed_ = false;
+    
+    deck_.reset();
+    deck_.shuffle();
 }
 
 void Game::playCard(Card *c) {
+    sevenOfSpadePlayed_ = true;
     cardsPlayed_.push_back(c);
     int suitId = (int)c->getSuit();
     int rankId = (int)c->getRank();
     
-    for (int i = 0; i < 13; i++) {
-        playField_[suitId][i] = true;
+    if (rankId > 0) {
+        playField_[suitId][rankId - 1] = true;
     }
-    for (int j = 0; j < 4; j++) {
-        playField_[j][rankId] = true;
+    if (rankId < 12) {
+        playField_[suitId][rankId + 1] = true;
     }
 }
 
 bool Game::isPlayValid(Card *c) {
+    if (!sevenOfSpadePlayed_) {
+        return c->getRank() == SEVEN && c->getSuit() == SPADE;
+    }
     int suitId = (int)c->getSuit();
     int rankId = (int)c->getRank();
     return playField_[suitId][rankId];
+}
+
+Deck& Game::getDeck() {
+    return deck_;
 }
 
 vector<Card*> Game::getCardsPlayed() {
@@ -46,4 +61,8 @@ vector<Card*> Game::getCardsPlayed() {
 Game& Game::getInstance() {
     static Game instance;
     return instance;
+}
+
+void Game::setSeed(long seed) {
+    srand48(seed);
 }

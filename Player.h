@@ -20,14 +20,18 @@ class Player {
 public:
     std::vector<Card*>& getHand();
     std::vector<Card*>& getDiscard();
+    std::vector<Card*> getLegalPlays();
     virtual void pollCommand() = 0;
     int getScore();
     void setHand(const std::vector<Card*>);
     Card *findCard(Suit suit, Rank rank);
     virtual ~Player(){}
+    void setName(const std::string& name);
+    std::string getName();
 private:
     std::vector<Card*> hand_;
     std::vector<Card*> discard_;
+    std::string name_;
 protected:
     void play(Suit suit, Rank rank);
     void discard(Suit suit, Rank rank);

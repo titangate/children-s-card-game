@@ -8,6 +8,9 @@
 
 #include "Deck.h"
 #include "Card.h"
+#include <iostream>
+
+using namespace std;
 
 void Deck::shuffle() {
     int n = cards_.size();
@@ -26,11 +29,20 @@ void Deck::reset() {
         delete cards_[i];
     }
     cards_.clear();
-    
-    for (int rank = ACE; rank != RANK_COUNT; rank++) {
-        for (int suit = CLUB; suit != SUIT_COUNT; suit++) {
+    for (int suit = CLUB; suit != SUIT_COUNT; suit++) {
+        for (int rank = ACE; rank != RANK_COUNT; rank++) {
             cards_.push_back(new Card((Suit)(suit), (Rank)(rank)));
         }
+    }
+}
+
+void Deck::print() {
+    for (int i = 0; i < 4; i++) {
+        cout << *cards_[i*13];
+        for (int j = 1; j < 13; j++) {
+            cout << " " << *cards_[i*13+j];
+        }
+        cout << endl;
     }
 }
 

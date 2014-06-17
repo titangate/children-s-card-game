@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <vector>
+#include "Deck.h"
 #include "Card.h"
 
 class Game {
@@ -21,9 +22,13 @@ public:
     void playCard(Card *);
     bool isPlayValid(Card *);
     std::vector<Card*> getCardsPlayed();
+    void setSeed(long);
+    Deck& getDeck();
 private:
     std::vector<Card*> cardsPlayed_;
     bool playField_[4][13];
+    Deck deck_;
+    bool sevenOfSpadePlayed_;
     Game() {}
     Game(Game const&);
     void operator=(Game const&);
