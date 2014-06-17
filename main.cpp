@@ -104,9 +104,8 @@ int main(int argc, const char * argv[])
     if (argc > 1) {
         Game::getInstance().setSeed(atol(argv[1]));
     } else {
-        Game::getInstance().setSeed(44);
+        Game::getInstance().setSeed(0);
     }
-    Game::getInstance().setSeed(44);
     
     Game::getInstance().getDeck().reset();
     

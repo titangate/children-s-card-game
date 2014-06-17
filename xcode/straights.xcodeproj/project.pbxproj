@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB10BDD9194A3184008C8E50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDD8194A3184008C8E50 /* main.cpp */; };
 		BB10BDDB194A3184008C8E50 /* straights.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB10BDDA194A3184008C8E50 /* straights.1 */; };
 		BB10BDE6194A3236008C8E50 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDE1194A3236008C8E50 /* Card.cpp */; };
 		BB10BDE7194A3236008C8E50 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB10BDE3194A3236008C8E50 /* Command.cpp */; };
@@ -17,6 +16,7 @@
 		BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F93194F6FE7000012E5 /* ComputerPlayer.cpp */; };
 		BB510F98194F7E32000012E5 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F96194F7E32000012E5 /* Deck.cpp */; };
 		BB510F9B194F882F000012E5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F99194F882F000012E5 /* Game.cpp */; };
+		BB710479194FE1E200B21351 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB710478194FE1E200B21351 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		BB10BDD5194A3184008C8E50 /* straights */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = straights; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB10BDD8194A3184008C8E50 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BB10BDDA194A3184008C8E50 /* straights.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = straights.1; sourceTree = "<group>"; };
 		BB10BDE1194A3236008C8E50 /* Card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Card.cpp; path = ../../Card.cpp; sourceTree = "<group>"; };
 		BB10BDE2194A3236008C8E50 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../../Card.h; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		BB510F97194F7E32000012E5 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Deck.h; path = ../../Deck.h; sourceTree = "<group>"; };
 		BB510F99194F882F000012E5 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../Game.cpp; sourceTree = "<group>"; };
 		BB510F9A194F882F000012E5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../Game.h; sourceTree = "<group>"; };
+		BB710478194FE1E200B21351 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +83,12 @@
 		BB10BDD7194A3184008C8E50 /* straights */ = {
 			isa = PBXGroup;
 			children = (
+				BB710478194FE1E200B21351 /* main.cpp */,
 				BB10BDE1194A3236008C8E50 /* Card.cpp */,
 				BB10BDE2194A3236008C8E50 /* Card.h */,
 				BB10BDE3194A3236008C8E50 /* Command.cpp */,
 				BB10BDE4194A3236008C8E50 /* Command.h */,
 				BB10BDE5194A3236008C8E50 /* shuffle.cpp */,
-				BB10BDD8194A3184008C8E50 /* main.cpp */,
 				BB10BDDA194A3184008C8E50 /* straights.1 */,
 				BB510F8D194F6DFF000012E5 /* Player.cpp */,
 				BB510F8E194F6DFF000012E5 /* Player.h */,
@@ -157,9 +157,9 @@
 			files = (
 				BB510F9B194F882F000012E5 /* Game.cpp in Sources */,
 				BB510F98194F7E32000012E5 /* Deck.cpp in Sources */,
+				BB710479194FE1E200B21351 /* main.cpp in Sources */,
 				BB510F95194F6FE7000012E5 /* ComputerPlayer.cpp in Sources */,
 				BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */,
-				BB10BDD9194A3184008C8E50 /* main.cpp in Sources */,
 				BB10BDE8194A3236008C8E50 /* shuffle.cpp in Sources */,
 				BB10BDE7194A3236008C8E50 /* Command.cpp in Sources */,
 				BB10BDE6194A3236008C8E50 /* Card.cpp in Sources */,
