@@ -13,19 +13,26 @@
 #include <vector>
 #include "Deck.h"
 #include "Card.h"
+#include "Player.h"
 
 class Game {
     
 public:
     static Game& getInstance();
+    ~Game();
     void reset();
     void playCard(Card *);
     bool isPlayValid(Card *);
     std::vector<Card*> getCardsPlayed();
     void setSeed(long);
+    void invitePlayers();
+    bool runRound();
     Deck& getDeck();
 private:
     std::vector<Card*> cardsPlayed_;
+    std::vector<Player*> players_;
+    
+    int dealDeck();
     bool playField_[4][13];
     Deck deck_;
     bool sevenOfSpadePlayed_;
