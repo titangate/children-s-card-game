@@ -14,8 +14,9 @@
 #include "Deck.h"
 #include "Card.h"
 #include "Player.h"
+#include "subject.h"
 
-class Game {
+class Game : public Subject {
     
 public:
     static Game& getInstance();

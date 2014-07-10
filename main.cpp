@@ -18,10 +18,13 @@
 #include "Game.h"
 #include <sstream>
 #include <cstdlib>
+#include <gtkmm/main.h>
+#include "Controller.h"
+#include "View.h"
 
 using namespace std;
 
-int main(int argc, const char * argv[])
+int main(int argc, char * argv[])
 {
     if (argc > 1) {
         Game::getInstance().setSeed(atol(argv[1]));
@@ -29,12 +32,17 @@ int main(int argc, const char * argv[])
         Game::getInstance().setSeed(0);
     }
     
-    Game::getInstance().getDeck().reset();
-    Game::getInstance().invitePlayers();
+    // Game::getInstance().getDeck().reset();
+    // Game::getInstance().invitePlayers();
     
-    while (!Game::getInstance().runRound()) {
-    }
+    // while (!Game::getInstance().runRound()) {
+    // }
     
+	Gtk::Main kit( argc, argv );         // Initialize gtkmm with the command line arguments, as appropriate.
+    Controller controller( &Game::getInstance() );  // Create controller
+	View view( &controller, &Game::getInstance() );     // Create the view -- is passed handle to controller and model
+	Gtk::Main::run( view );               // Show the window and return when it is closed.
+	
     return 0;
 }
 

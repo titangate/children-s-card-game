@@ -17,6 +17,7 @@
 		BB510F98194F7E32000012E5 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F96194F7E32000012E5 /* Deck.cpp */; };
 		BB510F9B194F882F000012E5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB510F99194F882F000012E5 /* Game.cpp */; };
 		BB710479194FE1E200B21351 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB710478194FE1E200B21351 /* main.cpp */; };
+		BBA7C39B196EFDB3002A7FA0 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBA7C399196EFDB3002A7FA0 /* Controller.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		BB510F99194F882F000012E5 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../Game.cpp; sourceTree = "<group>"; };
 		BB510F9A194F882F000012E5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../Game.h; sourceTree = "<group>"; };
 		BB710478194FE1E200B21351 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
+		BBA7C399196EFDB3002A7FA0 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../../Controller.cpp; sourceTree = "<group>"; };
+		BBA7C39A196EFDB3002A7FA0 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../../Controller.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				BB510F97194F7E32000012E5 /* Deck.h */,
 				BB510F99194F882F000012E5 /* Game.cpp */,
 				BB510F9A194F882F000012E5 /* Game.h */,
+				BBA7C399196EFDB3002A7FA0 /* Controller.cpp */,
+				BBA7C39A196EFDB3002A7FA0 /* Controller.h */,
 			);
 			path = straights;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				BB510F92194F6F63000012E5 /* HumanPlayer.cpp in Sources */,
 				BB10BDE8194A3236008C8E50 /* shuffle.cpp in Sources */,
 				BB10BDE7194A3236008C8E50 /* Command.cpp in Sources */,
+				BBA7C39B196EFDB3002A7FA0 /* Controller.cpp in Sources */,
 				BB10BDE6194A3236008C8E50 /* Card.cpp in Sources */,
 				BB510F8F194F6DFF000012E5 /* Player.cpp in Sources */,
 			);
