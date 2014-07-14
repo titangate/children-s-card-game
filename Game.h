@@ -14,7 +14,7 @@
 #include "Deck.h"
 #include "Card.h"
 #include "Player.h"
-#include "subject.h"
+#include "Subject.h"
 
 class Game : public Subject {
     

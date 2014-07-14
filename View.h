@@ -22,6 +22,25 @@ private:
 	// Strategy Pattern member (plus signal handlers)
 	Controller *controller_;
 
+	// member widgets
+	Gtk::HBox topHBox;
+	Gtk::HBox cardsPlayedHBox;
+	Gtk::HBox playerInfoHBox;
+	Gtk::HBox playerCardsHBox;
+	Gtk::VBox cardsPlayedVBox;
+	Gtk::Button newGame_button;
+	Gtk::Button playCard_button;
+	Gtk::ToggleButton human_AI_rageQuit_button;
+	Gtk::Button quit_button;
+	Gtk::Entry seed_entry;
+	Gtk::Image card;
+
+	// signal handlers
+	void NewGameButtonClicked();
+	void quitGameButtonClicked();
+
 }; // View
+
+
 
 #endif
