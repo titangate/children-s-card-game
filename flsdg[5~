@@ -1,0 +1,68 @@
+diff --git a/View.cpp b/View.cpp
+index 4262511..a94dc0a 100644
+--- a/View.cpp
++++ b/View.cpp
+@@ -2,7 +2,7 @@
+ #include <gtkmm.h>
+ #include <iostream>
+ 
+-View::View(Controller *c, Game *m) : model_(m), controller_(c), cardsPlayedVBox(true,10), topHBox(true, 10), cardsPlayedHBox(true,10), playerInfoHBox(true, 10), playerCardsHBox(true, 10), newGame_button("New game"), quit_button("Quit Game"), human_AI_rageQuit_button("Human") {
++View::View(Controller *c, Game *m) : model_(m), controller_(c), topHBox(true, 10), newGame_button("New game"), quit_button("Quit Game"), cardsPlayed(true,10), playerInfoHBox(true, 10), cardsPlayed_aces(true,10), cardsPlayed_twos(true,10), cardsPlayed_threes(true,10), cardsPlayed_fours(true,10), cardsPlayed_fives(true,10), cardsPlayed_sixes(true,10), cardsPlayed_sevens(true,10), cardsPlayed_eights(true,10), cardsPlayed_nines(true,10), cardsPlayed_tens(true,10), cardsPlayed_jacks(true,10), cardsPlayed_queens(true,10), cardsPlayed_kings(true,10), playerCardsHBox(true, 10),  human_AI_rageQuit_button("Human") {
+ 
+ 	// Sets some properties of the window.
+ 	set_title( "Straights" );
+@@ -14,8 +14,20 @@ View::View(Controller *c, Game *m) : model_(m), controller_(c), cardsPlayedVBox(
+ 	// hbox.add(seed_entry);
+ 	topHBox.add(quit_button);
+ 
+-	add(cardsPlayedHBox);
+-	cardsPlayedHBox.add(cardsPlayedVBox);
++	add(cardsPlayed);
++	cardsPlayed.add(cardsPlayed_twos);
++	// TODO: add four images for each VBox
++	cardsPlayed.add(cardsPlayed_threes);
++	cardsPlayed.add(cardsPlayed_fours);
++	cardsPlayed.add(cardsPlayed_fives);
++	cardsPlayed.add(cardsPlayed_sixes);
++	cardsPlayed.add(cardsPlayed_sevens);
++	cardsPlayed.add(cardsPlayed_eights);
++	cardsPlayed.add(cardsPlayed_nines);
++	cardsPlayed.add(cardsPlayed_tens);
++	cardsPlayed.add(cardsPlayed_jacks);
++	cardsPlayed.add(cardsPlayed_queens);
++	cardsPlayed.add(cardsPlayed_kings);
+ 	// add card images to rows and columns
+ 
+ 	add(playerInfoHBox);
+diff --git a/View.h b/View.h
+index 3138b07..929f511 100644
+--- a/View.h
++++ b/View.h
+@@ -24,10 +24,25 @@ private:
+ 
+ 	// member widgets
+ 	Gtk::HBox topHBox;
+-	Gtk::HBox cardsPlayedHBox;
++
++	Gtk::HBox cardsPlayed;
++	
++	Gtk::VBox cardsPlayed_aces;	
++	Gtk::VBox cardsPlayed_twos;
++	Gtk::VBox cardsPlayed_threes;
++	Gtk::VBox cardsPlayed_fours;
++	Gtk::VBox cardsPlayed_fives;
++	Gtk::VBox cardsPlayed_sixes;
++	Gtk::VBox cardsPlayed_sevens;
++	Gtk::VBox cardsPlayed_eights;
++	Gtk::VBox cardsPlayed_nines;
++	Gtk::VBox cardsPlayed_tens;
++	Gtk::VBox cardsPlayed_jacks;
++	Gtk::VBox cardsPlayed_queens;
++	Gtk::VBox cardsPlayed_kings;
++
+ 	Gtk::HBox playerInfoHBox;
+ 	Gtk::HBox playerCardsHBox;
+-	Gtk::VBox cardsPlayedVBox;
+ 	Gtk::Button newGame_button;
+ 	Gtk::Button playCard_button;
+ 	Gtk::ToggleButton human_AI_rageQuit_button;
