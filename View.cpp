@@ -1,8 +1,11 @@
 #include "View.h"
 #include <gtkmm.h>
 #include <iostream>
+#include "Controller.h"
+#include "Card.h"
+#include "Game.h"
 
-View::View(Controller *c, Game *m) : model_(m), controller_(c), topHBox(false, 10), newGame_button("New game"), quit_button("Quit Game"), vbox(false,10), cardsPlayed(false, 10), playerInfo(false, 10), playerCardsHBox(false, 10),  human_AI_rageQuit_button("Human") {
+View::View(Controller *c, Game *m) : game_(m), controller_(c), topHBox(false, 10), newGame_button("New game"), quit_button("Quit Game"), vbox(false,10), cardsPlayed(false, 10), playerInfo(false, 10), playerCardsHBox(false, 10),  human_AI_rageQuit_button("Human") {
 
 	// Sets some properties of the window.
 	set_title( "Straights" );
@@ -54,16 +57,23 @@ View::View(Controller *c, Game *m) : model_(m), controller_(c), topHBox(false, 1
 
 } // View::View
 
-/*void View::newGameButtonClicked() {
-	controller_->newGameButtonClicked();
+void View::newGameButtonClicked() {
+	controller_->newGameButtonClicked(0);
 }
 
 void View::quitGameButtonClicked() {
 	controller_->quitGameButtonClicked();
-} */
+}
 
 void View::update() {
-	// card update should go here
+	// update the player's hand
+	vector<Card*> hand = game_->getCurrentPlayer()->getHand();
+	for (int i = 0; i < hand.size(); i++) {
+
+	}
+
+	// update the player field
+	
 }
 
 View::~View() {}

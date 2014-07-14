@@ -17,7 +17,7 @@ public:
 
 private:
 	// Observer Pattern: to access Game accessors without having to downcast subject
-	Game *model_;
+	Game *game_;
 	
 	// Strategy Pattern member (plus signal handlers)
 	Controller *controller_;
@@ -43,7 +43,7 @@ private:
 	Gtk::Image card;
 
 	// signal handlers
-	void NewGameButtonClicked();
+	void newGameButtonClicked();
 	void quitGameButtonClicked();
 
 }; // View

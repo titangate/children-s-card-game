@@ -67,6 +67,10 @@ Game& Game::getInstance() {
     return instance;
 }
 
+Player* Game::getCurrentPlayer() {
+    return players_[currentIndex];
+}
+
 void Game::setSeed(long seed) {
     srand48(seed);
 }
@@ -113,6 +117,10 @@ Game::~Game() {
     }
 }
 
+Game::issueCommand(const Command& command) {
+
+}
+
 bool Game::runRound() {
     
     Game::getInstance().reset();
@@ -120,7 +128,7 @@ bool Game::runRound() {
     cout << "A new round begins. It's player "<< players_[starterIndex]->getName() <<"'s turn to play." << endl;
     assert(starterIndex >= 0);
     for (int i = 0; i < 52; i++) {
-        int currentIndex = (starterIndex + i) % players_.size();
+        currentIndex = (starterIndex + i) % players_.size();
         try {
             players_[currentIndex]->pollCommand();
         } catch (quit e) {

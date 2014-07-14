@@ -29,9 +29,11 @@ public:
     void invitePlayers();
     bool runRound();
     Deck& getDeck();
+    Player* getCurrentPlayer();
 private:
     std::vector<Card*> cardsPlayed_;
     std::vector<Player*> players_;
+    int currentIndex;
     
     int dealDeck();
     bool playField_[4][13];

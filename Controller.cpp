@@ -12,18 +12,20 @@
 
 Controller::Controller(Game *m) : game_(m) {}
 
-void playCardClicked(int index) {
+void Controller::playCardClicked(int index) {
 
 }
 
-void rageClicked(int index) {
+void Controller::rageClicked(int index) {
 
 }
 
-void startNewGameClicked() {
-
+void Controller::newGameButtonClicked(long seed) {
+	game_->setSeed(seed);
+	while (!Game::getInstance().runRound()) {
+    }
 }
 
-void endCurrentGameClicked() {
+void Controller::quitGameButtonClicked() {
 
 }

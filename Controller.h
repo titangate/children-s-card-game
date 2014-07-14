@@ -18,8 +18,8 @@ public:
     Controller( Game* );
     void playCardClicked(int index);
     void rageClicked(int index);
-    void startNewGameClicked();
-    void endCurrentGameClicked();
+    void newGameButtonClicked(long seed);
+    void quitGameButtonClicked();
 private:
     Game *game_;
 }; // Controller
