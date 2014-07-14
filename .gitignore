@@ -3,6 +3,7 @@
 *.lo
 *.o
 *.obj
+*.d
 
 # Compiled Dynamic libraries
 *.so
@@ -19,6 +20,8 @@
 *.exe
 *.out
 *.app
+straights
+straights_ui
 #########################
 # .gitignore file for Xcode4 / OS X Source projects
 #
