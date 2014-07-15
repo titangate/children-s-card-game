@@ -73,6 +73,7 @@ Player* Game::getCurrentPlayer() {
 
 void Game::setSeed(long seed) {
     srand48(seed);
+    cout << "Seed is set to " << seed << endl;
 }
 
 void Game::invitePlayers() {

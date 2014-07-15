@@ -40,7 +40,8 @@ private:
 
 	
 	Gtk::Button quit_button;
-	Gtk::Entry seed_entry;
+	Gtk::Adjustment seed_adjustment;
+	Gtk::SpinButton seed_spinButton;
 	Gtk::Image card;
 
 	// signal handlers
