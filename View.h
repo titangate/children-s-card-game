@@ -27,22 +27,14 @@ private:
 
 	Gtk::HBox cardsPlayed;
 	
-	Gtk::VBox cardsPlayed_aces;	
-	Gtk::VBox cardsPlayed_twos;
-	Gtk::VBox cardsPlayed_threes;
-	Gtk::VBox cardsPlayed_fours;
-	Gtk::VBox cardsPlayed_fives;
-	Gtk::VBox cardsPlayed_sixes;
-	Gtk::VBox cardsPlayed_sevens;
-	Gtk::VBox cardsPlayed_eights;
-	Gtk::VBox cardsPlayed_nines;
-	Gtk::VBox cardsPlayed_tens;
-	Gtk::VBox cardsPlayed_jacks;
-	Gtk::VBox cardsPlayed_queens;
-	Gtk::VBox cardsPlayed_kings;
+	std::vector<Gtk::VBox*> cards_;
+	std::vector<Gtk::Button*> cardButtons_;
+	std::vector<Gtk::HBox*> suits;
 
-	Gtk::HBox playerInfoHBox;
+	Gtk::HBox playerInfo;
 	Gtk::HBox playerCardsHBox;
+
+	Gtk::VBox vbox;
 	Gtk::Button newGame_button;
 	Gtk::Button playCard_button;
 	Gtk::ToggleButton human_AI_rageQuit_button;

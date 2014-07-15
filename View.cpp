@@ -2,45 +2,46 @@
 #include <gtkmm.h>
 #include <iostream>
 
-View::View(Controller *c, Game *m) : model_(m), controller_(c), topHBox(true, 10), newGame_button("New game"), quit_button("Quit Game"), cardsPlayed(true,10), playerInfoHBox(true, 10), cardsPlayed_aces(true,10), cardsPlayed_twos(true,10), cardsPlayed_threes(true,10), cardsPlayed_fours(true,10), cardsPlayed_fives(true,10), cardsPlayed_sixes(true,10), cardsPlayed_sevens(true,10), cardsPlayed_eights(true,10), cardsPlayed_nines(true,10), cardsPlayed_tens(true,10), cardsPlayed_jacks(true,10), cardsPlayed_queens(true,10), cardsPlayed_kings(true,10), playerCardsHBox(true, 10),  human_AI_rageQuit_button("Human") {
+View::View(Controller *c, Game *m) : model_(m), controller_(c), topHBox(false, 10), newGame_button("New game"), quit_button("Quit Game"), vbox(false,10), cardsPlayed(false, 10), playerInfo(false, 10), playerCardsHBox(false, 10),  human_AI_rageQuit_button("Human") {
 
 	// Sets some properties of the window.
 	set_title( "Straights" );
 	set_default_size(1000,600);
 
-	add(topHBox);
+	add(vbox);
+	vbox.add(topHBox);
 
 	topHBox.add(newGame_button);
-	// hbox.add(seed_entry);
+	topHBox.add(seed_entry);
 	topHBox.add(quit_button);
 
-	add(cardsPlayed);
-	cardsPlayed.add(cardsPlayed_twos);
-	// TODO: add four images for each VBox
-	cardsPlayed.add(cardsPlayed_threes);
-	cardsPlayed.add(cardsPlayed_fours);
-	cardsPlayed.add(cardsPlayed_fives);
-	cardsPlayed.add(cardsPlayed_sixes);
-	cardsPlayed.add(cardsPlayed_sevens);
-	cardsPlayed.add(cardsPlayed_eights);
-	cardsPlayed.add(cardsPlayed_nines);
-	cardsPlayed.add(cardsPlayed_tens);
-	cardsPlayed.add(cardsPlayed_jacks);
-	cardsPlayed.add(cardsPlayed_queens);
-	cardsPlayed.add(cardsPlayed_kings);
-	// add card images to rows and columns
+	for (int i=0;i<4;i++) {
+		
+		Gtk::HBox* suit = new Gtk::HBox(true, 10);
+		vbox.add(*suit);
 
-	add(playerInfoHBox);
+		for (int j=0;j<13;i++) {
+
+			Gtk::Button* box = new Gtk::Button("test");
+			cardButtons_.push_back(box);
+			suit->add(*box);
+			
+
+		}
+
+		suits.push_back(suit);
+	}
+	// TODO: addimages for each card
+
+	vbox.add(playerInfo);
+
 	// group into 4 boxes
-	playerInfoHBox.add(human_AI_rageQuit_button);
-	playerInfoHBox.add(human_AI_rageQuit_button);
-	playerInfoHBox.add(human_AI_rageQuit_button);
-	playerInfoHBox.add(human_AI_rageQuit_button);
+	
 	// add score label
 	// add discards label
 	
 	
-	add(playerCardsHBox);
+	
 	// add 13 columns of card images
 
 	
