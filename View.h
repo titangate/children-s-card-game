@@ -23,21 +23,22 @@ private:
 	Controller *controller_;
 
 	// member widgets
-	Gtk::HBox topHBox;
+	Gtk::VBox vbox;
 
-	Gtk::HBox cardsPlayed;
+	Gtk::HBox topHBox;
+	Gtk::Button newGame_button;
 	
-	std::vector<Gtk::VBox*> cards_;
 	std::vector<Gtk::Image*> cardImages_;
 	std::vector<Gtk::HBox*> suits;
+	
+	std::vector<Gtk::Frame*> playerInfo;
+	Gtk::ToggleButton playerToggle_button [4];
+	Gtk::Label player_points [4];
+	Gtk::Label player_discards [4];
 
-	Gtk::HBox playerInfo;
-	Gtk::HBox playerCardsHBox;
+	std::vector<Gtk::Image*> playerCards_;
 
-	Gtk::VBox vbox;
-	Gtk::Button newGame_button;
-	Gtk::Button playCard_button;
-	Gtk::ToggleButton human_AI_rageQuit_button;
+	
 	Gtk::Button quit_button;
 	Gtk::Entry seed_entry;
 	Gtk::Image card;
