@@ -57,6 +57,8 @@ seed_spinButton(seed_adjustment)
 		Gtk::Frame* playerframe = new Gtk::Frame(ss.str());
 		playerInfo.push_back(playerframe);
 		playerDetails->add(*playerframe);
+
+		// frame as container
 		
 	}
 	vbox.add(*playerDetails);
