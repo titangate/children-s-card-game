@@ -49,10 +49,11 @@ seed_spinButton(seed_adjustment)
 
 
 	Gtk::HBox* playerDetails = new Gtk::HBox(true,10);
+	Gtk::VBox* details = new Gtk::VBox(false,5);
 
 	for (int i=1;i<5;i++) {
 		stringstream ss;
-		ss << "player" << i;
+		ss << "Player " << i;
 		Gtk::Frame* playerframe = new Gtk::Frame(ss.str());
 		playerInfo.push_back(playerframe);
 		playerDetails->add(*playerframe);
@@ -66,7 +67,7 @@ seed_spinButton(seed_adjustment)
 
 
 
-	Gtk::HBox* cards = new Gtk::HBox(true, 10);
+	Gtk::HBox* cards = new Gtk::HBox(true, 0);
 	for (int i=0;i<13;i++) {
 		Gtk::Button* button = new Gtk::Button("card"); // TODO add buttons
 		playerCards_.push_back(button);
