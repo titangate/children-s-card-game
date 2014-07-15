@@ -36,7 +36,7 @@ private:
 	Gtk::Label player_points [4];
 	Gtk::Label player_discards [4];
 
-	std::vector<Gtk::Image*> playerCards_;
+	std::vector<Gtk::Button*> playerCards_;
 
 	
 	Gtk::Button quit_button;

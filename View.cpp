@@ -62,9 +62,9 @@ seed_spinButton(seed_adjustment)
 
 	Gtk::HBox* cards = new Gtk::HBox(true, 10);
 	for (int i=0;i<13;i++) {
-		Gtk::Image* image = new Gtk::Image("card"); // TODO add images
-		playerCards_.push_back(image);
-		cards->add(*image);
+		Gtk::Button* button = new Gtk::Button("card"); // TODO add buttons
+		playerCards_.push_back(button);
+		cards->add(*button);
 	}
 	vbox.add(*cards);
 
