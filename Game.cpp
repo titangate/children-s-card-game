@@ -128,6 +128,7 @@ void Game::rageQuit() {
 
 void Game::runGameUntilInputRequired() {
     currentIndex = (currentIndex + 1) % players_.size();
+    notify();
     while (!getCurrentPlayer()->pollCommand()) {
         runGameUntilInputRequired();
     }

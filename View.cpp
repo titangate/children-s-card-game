@@ -71,13 +71,19 @@ seed_spinButton(seed_adjustment)
 
 	Gtk::HBox* cards = new Gtk::HBox(true, 0);
 	for (int i=0;i<13;i++) {
-		Gtk::Button* button = new Gtk::Button("card"); // TODO add buttons
+		Gtk::Button* button = new Gtk::Button(); // TODO add buttons
 		playerCards_.push_back(button);
 		cards->add(*button);
+
+		Gtk::Image *image = new Gtk::Image(deck.null());
+		button->set_image(*image);
+		playerCardImages_.push_back(image);
 	}
 	vbox.add(*cards);
 
 	show_all(); // show button
+
+	game_->subscribe(this);
 }
 
 void View::newGameButtonClicked() {
@@ -90,9 +96,11 @@ void View::quitGameButtonClicked() {
 
 void View::update() {
 	// update the player's hand
+	cout << "updating..." << endl;
 	vector<Card*> hand = game_->getCurrentPlayer()->getHand();
 	for (int i = 0; i < hand.size(); i++) {
-
+		Card *card = hand[i];
+		playerCardImages_[i]->set(deck.image(*card));
 	}
 
 	// update the player field

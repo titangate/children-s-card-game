@@ -39,6 +39,7 @@ private:
 	Gtk::Label player_discards;
 
 	std::vector<Gtk::Button*> playerCards_;
+	std::vector<Gtk::Image*> playerCardImages_;
 
 	
 	Gtk::Button quit_button;
