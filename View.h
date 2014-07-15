@@ -28,7 +28,7 @@ private:
 	Gtk::HBox cardsPlayed;
 	
 	std::vector<Gtk::VBox*> cards_;
-	std::vector<Gtk::Button*> cardButtons_;
+	std::vector<Gtk::Image*> cardImages_;
 	std::vector<Gtk::HBox*> suits;
 
 	Gtk::HBox playerInfo;

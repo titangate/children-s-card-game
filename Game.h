@@ -15,6 +15,7 @@
 #include "Card.h"
 #include "Player.h"
 #include "Subject.h"
+#include "Command.h"
 
 class Game : public Subject {
     
@@ -26,6 +27,7 @@ public:
     bool isPlayValid(Card *);
     std::vector<Card*> getCardsPlayed();
     void setSeed(long);
+    void issueCommand(const Command&);
     void invitePlayers();
     bool runRound();
     Deck& getDeck();

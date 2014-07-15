@@ -5,6 +5,8 @@
 #include "Card.h"
 #include "Game.h"
 
+using namespace std;
+
 View::View(Controller *c, Game *m) : game_(m), controller_(c), topHBox(false, 10), newGame_button("New game"), quit_button("Quit Game"), vbox(false,10), cardsPlayed(false, 10), playerInfo(false, 10), playerCardsHBox(false, 10),  human_AI_rageQuit_button("Human") {
 
 	// Sets some properties of the window.
@@ -23,11 +25,11 @@ View::View(Controller *c, Game *m) : game_(m), controller_(c), topHBox(false, 10
 		Gtk::HBox* suit = new Gtk::HBox(true, 10);
 		vbox.add(*suit);
 
-		for (int j=0;j<13;i++) {
+		for (int j=0;j<13;j++) {
 
-			Gtk::Button* box = new Gtk::Button("test");
-			cardButtons_.push_back(box);
-			suit->add(*box);
+			Gtk::Image* image = new Gtk::Image("test");
+			cardImages_.push_back(image);
+			suit->add(*image);
 			
 
 		}

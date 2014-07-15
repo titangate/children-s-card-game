@@ -117,7 +117,7 @@ Game::~Game() {
     }
 }
 
-Game::issueCommand(const Command& command) {
+void Game::issueCommand(const Command& command) {
 
 }
 
