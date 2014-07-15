@@ -29,6 +29,7 @@ void Game::reset() {
     sevenOfSpadePlayed_ = false;
     
     deck_.shuffle();
+    cardsPlayed_.clear();
 }
 
 void Game::playCard(Card *c) {
@@ -108,6 +109,8 @@ Game::~Game() {
 
 void Game::issueCommand(const Command& command) {
     getCurrentPlayer()->processCommand(command);
+    turnCount++;
+    runGameUntilInputRequired();
 }
 
 void Game::rageQuit() {
@@ -128,8 +131,10 @@ void Game::rageQuit() {
 
 void Game::runGameUntilInputRequired() {
     currentIndex = (currentIndex + 1) % players_.size();
+    cout << "Player " << currentIndex << "'s turn" << endl;
     notify();
-    while (!getCurrentPlayer()->pollCommand()) {
+    while (!getCurrentPlayer()->pollCommand() && turnCount < 52) {
+        turnCount++;
         runGameUntilInputRequired();
     }
 }
@@ -169,6 +174,7 @@ void Game::endRound() {
 }
 
 void Game::runRound() {
+    turnCount = 0;
     Game::getInstance().reset();
     currentIndex = dealDeck();
     cout << "A new round begins. It's player "<< players_[currentIndex]->getName() <<"'s turn to play." << endl;

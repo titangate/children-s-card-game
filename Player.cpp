@@ -100,34 +100,18 @@ std::string Player::getName() {
 }
 
 void Player::processCommand(const Command &command) {
-    bool done = false;
-    while (!done) {
         switch (command.type) {
             case PLAY: {
                 const Card &card = command.card;
-                try {
-                    play(card.getSuit(), card.getRank());
-                    done = true;
-                } catch (invalid_play e) {
-                    cout << "This is not a legal play." << endl;
-                }
+                play(card.getSuit(), card.getRank());
             }
                 break;
             case DISCARD: {
                 const Card &card = command.card;
-                try {
-                    discard(card.getSuit(), card.getRank());
-                    done = true;
-                } catch (invalid_play e) {
-                    cout << "You have a legal play. You may not discard." << endl;
-                }
+                discard(card.getSuit(), card.getRank());
+                break;
             }
-                break;
-            case DECK:
-                Game::getInstance().getDeck().print();
-                break;
             default:
                 break;
         }
-    }
 }

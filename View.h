@@ -52,6 +52,8 @@ private:
 
 	// signal handlers
 	void newGameButtonClicked();
-	void quitGameButtonClicked();}; // View
+	void quitGameButtonClicked();
+	void playCardClicked(int index);
+}; // View
 
 #endif

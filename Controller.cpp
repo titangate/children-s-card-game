@@ -18,7 +18,11 @@ void Controller::playCardClicked(int index) {
 		Command cmd;
 		cmd.type = PLAY;
 		cmd.card = *card;
-		game_->getCurrentPlayer()->processCommand(cmd);
+		try {
+			game_->issueCommand(cmd);
+		} catch (invalid_play e) {
+			discardCardClicked(index);
+		}
 	}
 }
 
@@ -28,7 +32,11 @@ void Controller::discardCardClicked(int index) {
 		Command cmd;
 		cmd.type = DISCARD;
 		cmd.card = *card;
-		game_->getCurrentPlayer()->processCommand(cmd);
+		try {
+			game_->issueCommand(cmd);
+		} catch (invalid_play e) {
+			std::cout << "Invalid play." << std::endl;
+		}
 	}
 }
 
@@ -38,6 +46,8 @@ void Controller::rageClicked(int index) {
 
 void Controller::newGameButtonClicked(long seed) {
 	game_->setSeed(seed);
+    Game::getInstance().getDeck().reset();
+    Game::getInstance().invitePlayers();
 	Game::getInstance().runRound();
 }
 

@@ -78,6 +78,7 @@ seed_spinButton(seed_adjustment)
 		Gtk::Image *image = new Gtk::Image(deck.null());
 		button->set_image(*image);
 		playerCardImages_.push_back(image);
+		button->signal_clicked().connect(sigc::bind( sigc::mem_fun(*this, &View::playCardClicked), i));
 	}
 	vbox.add(*cards);
 
@@ -94,17 +95,35 @@ void View::quitGameButtonClicked() {
 	controller_->quitGameButtonClicked();
 }
 
+void View::playCardClicked(int index) {
+	controller_->playCardClicked(index);
+}
+
 void View::update() {
 	// update the player's hand
 	cout << "updating..." << endl;
 	vector<Card*> hand = game_->getCurrentPlayer()->getHand();
+	for (int i = 0; i < playerCardImages_.size(); i++) {
+		playerCardImages_[i]->set(deck.null());
+	}
 	for (int i = 0; i < hand.size(); i++) {
 		Card *card = hand[i];
-		playerCardImages_[i]->set(deck.image(*card));
+		if (card) {
+			playerCardImages_[i]->set(deck.image(*card));
+		} else {
+			playerCardImages_[i]->set(deck.null());
+		}
 	}
 
 	// update the player field
-	
+	for (int i = 0; i < cardImages_.size(); i++) {
+		cardImages_[i]->set(deck.null());
+	}
+	vector<Card*> field = game_->getCardsPlayed();
+	for (int i = 0; i < field.size(); i++) {
+		Card *card = field[i];
+		cardImages_[(int)card->getSuit() * 13 + (int)card->getRank()]->set(deck.image(*card));
+	}
 }
 
 View::~View() {}

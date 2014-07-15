@@ -39,6 +39,7 @@ private:
     std::vector<Card*> cardsPlayed_;
     std::vector<Player*> players_;
     int currentIndex;
+    int turnCount;
     
     int dealDeck();
     bool playField_[4][13];
