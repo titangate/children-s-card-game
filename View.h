@@ -3,11 +3,11 @@
 
 #include <gtkmm.h>
 #include "Observer.h"
+#include "DeckGUI.h"
 
 
 class Controller;
 class Game;
-
 
 class View : public Gtk::Window, public Observer {
 public:
@@ -44,12 +44,11 @@ private:
 	Gtk::SpinButton seed_spinButton;
 	Gtk::Image card;
 
+	// Card Images
+	DeckGUI deck;
+
 	// signal handlers
 	void newGameButtonClicked();
-	void quitGameButtonClicked();
-
-}; // View
-
-
+	void quitGameButtonClicked();}; // View
 
 #endif
