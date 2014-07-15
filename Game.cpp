@@ -77,20 +77,8 @@ void Game::setSeed(long seed) {
 }
 
 void Game::invitePlayers() {
-    string input;
     while (players_.size() < 4) {
-        cout << "Is player "<< players_.size() + 1 << " a human(h) or a computer(c)?" << endl;
-        cout << ">";
-        cin >> input;
-        assert(input == "c" || input == "C" || input == "H" || input == "h");
-        if (input == "h" || input == "H") {
-            players_.push_back(new HumanPlayer());
-        } else {
-            players_.push_back(new ComputerPlayer());
-        }
-        stringstream ss;
-        ss << players_.size();
-        players_.back()->setName(ss.str());
+        players_.push_back(new HumanPlayer());
     }
 }
 
@@ -140,7 +128,7 @@ void Game::rageQuit() {
 
 void Game::runGameUntilInputRequired() {
     currentIndex = (currentIndex + 1) % players_.size();
-    while (getCurrentPlayer()->pollCommand()) {
+    while (!getCurrentPlayer()->pollCommand()) {
         runGameUntilInputRequired();
     }
 }
@@ -181,9 +169,9 @@ void Game::endRound() {
 
 void Game::runRound() {
     Game::getInstance().reset();
-    int starterIndex = dealDeck();
-    cout << "A new round begins. It's player "<< players_[starterIndex]->getName() <<"'s turn to play." << endl;
-    assert(starterIndex >= 0);
-
+    currentIndex = dealDeck();
+    cout << "A new round begins. It's player "<< players_[currentIndex]->getName() <<"'s turn to play." << endl;
+    assert(currentIndex >= 0);
+    currentIndex--;
     runGameUntilInputRequired();
 }

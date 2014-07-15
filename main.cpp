@@ -33,7 +33,7 @@ int main(int argc, char * argv[])
     }
     
     Game::getInstance().getDeck().reset();
-    // Game::getInstance().invitePlayers();
+    Game::getInstance().invitePlayers();
     
     // while (!Game::getInstance().runRound()) {
     // }
