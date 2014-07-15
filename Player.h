@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Card.h"
 #include <vector>
+#include "Command.h"
 
 class invalid_play : public std::exception {
 };
@@ -21,13 +22,14 @@ public:
     std::vector<Card*>& getHand();
     std::vector<Card*>& getDiscard();
     std::vector<Card*> getLegalPlays();
-    virtual void pollCommand() = 0;
+    virtual bool pollCommand() = 0;
     int getScore();
     void setHand(const std::vector<Card*>&);
     void setDiscard(const std::vector<Card*>&);
     Card *findCard(Suit suit, Rank rank);
     virtual ~Player(){}
     void setName(const std::string& name);
+    void processCommand(const Command &command);
     std::string getName();
 private:
     std::vector<Card*> hand_;

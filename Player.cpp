@@ -98,3 +98,36 @@ void Player::setDiscard(const std::vector<Card*>& discard) {
 std::string Player::getName() {
     return name_;
 }
+
+void Player::processCommand(const Command &command) {
+    bool done = false;
+    while (!done) {
+        switch (command.type) {
+            case PLAY: {
+                const Card &card = command.card;
+                try {
+                    play(card.getSuit(), card.getRank());
+                    done = true;
+                } catch (invalid_play e) {
+                    cout << "This is not a legal play." << endl;
+                }
+            }
+                break;
+            case DISCARD: {
+                const Card &card = command.card;
+                try {
+                    discard(card.getSuit(), card.getRank());
+                    done = true;
+                } catch (invalid_play e) {
+                    cout << "You have a legal play. You may not discard." << endl;
+                }
+            }
+                break;
+            case DECK:
+                Game::getInstance().getDeck().print();
+                break;
+            default:
+                break;
+        }
+    }
+}

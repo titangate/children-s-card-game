@@ -12,15 +12,18 @@
 #include <gtkmm.h>
 
 class Game;
+class Card;
 
 class Controller {
 public:
     Controller( Game* );
     void playCardClicked(int index);
+    void discardCardClicked(int index);
     void rageClicked(int index);
     void newGameButtonClicked(long seed);
     void quitGameButtonClicked();
 private:
+	Card* getCardAtIndex(int index);
     Game *game_;
 }; // Controller
 

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void ComputerPlayer::pollCommand() {
+bool ComputerPlayer::pollCommand() {
     vector<Card*> legalPlays = getLegalPlays();
     if (legalPlays.size() > 0) {
         Card *card = legalPlays[0];
@@ -20,4 +20,5 @@ void ComputerPlayer::pollCommand() {
         Card *card = getHand()[0];
         discard(card->getSuit(), card->getRank());
     }
+    return false;
 }

@@ -29,7 +29,7 @@ void printCardsInSuit(const string &name, const vector<Card*> cards) {
     cout << endl;
 }
 
-void HumanPlayer::pollCommand() {
+bool HumanPlayer::pollCommand() {
     Game &game = Game::getInstance();
     cout << "Cards on the table:" << endl;
     vector<Card*> clubs, diamonds, hearts, spades;
@@ -74,43 +74,5 @@ void HumanPlayer::pollCommand() {
     }
     cout << endl;
     
-    Command command;
-    bool done = false;
-    while (!done) {
-        cout << ">";
-        cin >> command;
-        switch (command.type) {
-            case PLAY: {
-                Card &card = command.card;
-                try {
-                    play(card.getSuit(), card.getRank());
-                    done = true;
-                } catch (invalid_play e) {
-                    cout << "This is not a legal play." << endl;
-                }
-            }
-                break;
-            case DISCARD: {
-                Card &card = command.card;
-                try {
-                    discard(card.getSuit(), card.getRank());
-                    done = true;
-                } catch (invalid_play e) {
-                    cout << "You have a legal play. You may not discard." << endl;
-                }
-            }
-                break;
-            case DECK:
-                Game::getInstance().getDeck().print();
-                break;
-            case QUIT:
-                throw quit();
-                break;
-            case RAGEQUIT:
-                throw rage_quit();
-                break;
-            default:
-                break;
-        }
-    }
+    return true;
 }

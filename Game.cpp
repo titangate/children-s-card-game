@@ -118,33 +118,33 @@ Game::~Game() {
 }
 
 void Game::issueCommand(const Command& command) {
-
+    getCurrentPlayer()->processCommand(command);
 }
 
-bool Game::runRound() {
+void Game::rageQuit() {
+    cout << "Player "<< getCurrentPlayer()->getName() << " ragequits. A computer will now take over." << endl;
+    Player *player = getCurrentPlayer();
+    Player *newPlayer = new ComputerPlayer();
+    players_[currentIndex] = newPlayer;
+    newPlayer->setHand(player->getHand());
+    newPlayer->setName(player->getName());
+    newPlayer->setDiscard(player->getDiscard());
+    delete player;
+    currentIndex = (currentIndex - 1) % players_.size();
     
-    Game::getInstance().reset();
-    int starterIndex = dealDeck();
-    cout << "A new round begins. It's player "<< players_[starterIndex]->getName() <<"'s turn to play." << endl;
-    assert(starterIndex >= 0);
-    for (int i = 0; i < 52; i++) {
-        currentIndex = (starterIndex + i) % players_.size();
-        try {
-            players_[currentIndex]->pollCommand();
-        } catch (quit e) {
-            exit(0);
-        } catch (rage_quit e) {
-            cout << "Player "<< players_[currentIndex]->getName() << " ragequits. A computer will now take over." << endl;
-            Player *player = players_[currentIndex];
-            Player *newPlayer = new ComputerPlayer();
-            players_[currentIndex] = newPlayer;
-            newPlayer->setHand(player->getHand());
-            newPlayer->setName(player->getName());
-            newPlayer->setDiscard(player->getDiscard());
-            delete player;
-            i--;
-        }
+    notify();
+
+    runGameUntilInputRequired();
+}
+
+void Game::runGameUntilInputRequired() {
+    currentIndex = (currentIndex + 1) % players_.size();
+    while (getCurrentPlayer()->pollCommand()) {
+        runGameUntilInputRequired();
     }
+}
+
+void Game::endRound() {
     // produce results
     static int scores[4] = {0,0,0,0};
     int gameOver = false;
@@ -173,6 +173,16 @@ bool Game::runRound() {
                 cout << "Player " << players_[i]->getName() << " wins!" << endl;
             }
         }
+    } else {
+        runRound();
     }
-    return gameOver;
+}
+
+void Game::runRound() {
+    Game::getInstance().reset();
+    int starterIndex = dealDeck();
+    cout << "A new round begins. It's player "<< players_[starterIndex]->getName() <<"'s turn to play." << endl;
+    assert(starterIndex >= 0);
+
+    runGameUntilInputRequired();
 }

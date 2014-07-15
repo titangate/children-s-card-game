@@ -14,7 +14,7 @@
 
 class ComputerPlayer : public Player {
 public:
-    void pollCommand();
+    bool pollCommand();
 };
 
 #endif /* defined(__straights__ComputerPlayer__) */

@@ -20,7 +20,7 @@ class quit : public std::exception {
 
 class HumanPlayer : public Player {
 public:
-    void pollCommand();
+    bool pollCommand();
 };
 
 #endif /* defined(__straights__HumanPlayer__) */

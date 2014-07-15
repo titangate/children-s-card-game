@@ -28,8 +28,11 @@ public:
     std::vector<Card*> getCardsPlayed();
     void setSeed(long);
     void issueCommand(const Command&);
+    void runGameUntilInputRequired();
     void invitePlayers();
-    bool runRound();
+    void runRound();
+    void endRound();
+    void rageQuit();
     Deck& getDeck();
     Player* getCurrentPlayer();
 private:
