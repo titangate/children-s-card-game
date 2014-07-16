@@ -182,3 +182,7 @@ void Game::runRound() {
     currentIndex--;
     runGameUntilInputRequired();
 }
+
+std::vector<Player*> Game::getPlayers() {
+    return players_;
+}

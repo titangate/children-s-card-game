@@ -33,8 +33,9 @@ private:
 	
 	std::vector<Gtk::Frame*> playerInfo;
 	Gtk::ToggleButton toggle_button [4];
-	int num_points [4];
-	int num_discards [4];
+
+	std::vector<Gtk::Label*> pointLabels;
+	std::vector<Gtk::Label*> discardLabels;
 
 	std::vector<Gtk::Button*> playerCards_;
 	std::vector<Gtk::Image*> playerCardImages_;

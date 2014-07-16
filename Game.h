@@ -35,6 +35,7 @@ public:
     void rageQuit();
     Deck& getDeck();
     Player* getCurrentPlayer();
+    std::vector<Player*> getPlayers();
 private:
     std::vector<Card*> cardsPlayed_;
     std::vector<Player*> players_;

@@ -62,12 +62,12 @@ seed_spinButton(seed_adjustment)
 
 		// details->add(toggle_button[i]);
 		// add number of points
-		num_points[i]={0};
 		details->add(*player_points);
+		pointLabels.push_back(player_points);
 
 		//add number of discards
-		num_discards[i]={0};
 		details->add(*player_discards);
+		discardLabels.push_back(player_discards);
 		
 		playerframe->add(*details);
 		playerInfo.push_back(playerframe);
@@ -121,6 +121,19 @@ void View::update() {
 	for (int i = 0; i < playerCardImages_.size(); i++) {
 		playerCardImages_[i]->set(deck.null());
 	}
+
+	vector<Player*> players = game_->getPlayers();
+	for (int i = 0; i < players.size(); i++)
+	{
+		stringstream ss;
+		ss << players[i]->getScore() << " points";
+		pointLabels[i]->set_text(ss.str());
+
+		ss.str("");
+		ss << players[i]->getDiscard().size() << " discards";
+		discardLabels[i]->set_text(ss.str());
+	}
+
 	for (int i = 0; i < hand.size(); i++) {
 		Card *card = hand[i];
 		if (card) {
