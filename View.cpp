@@ -49,20 +49,24 @@ seed_spinButton(seed_adjustment)
 
 	// add the players panel that allows player to toggle between computer/human players, and view each players points and discards
 	Gtk::HBox* players = new Gtk::HBox(true,10);
-	Gtk::VBox* details = new Gtk::VBox(false,5);
 
 	for (int i=1;i<5;i++) {
+		Gtk::VBox* details = new Gtk::VBox(false,5);
 		
 		stringstream ss;
 		ss << "Player " << i;
 		Gtk::Frame* playerframe = new Gtk::Frame(ss.str());
+
 		Gtk::Label* player_points = new Gtk::Label(" points");
 		Gtk::Label* player_discards = new Gtk::Label(" discards");
 
-		// details->add(*toggle_button[i]);
+		// details->add(toggle_button[i]);
 		// add number of points
+		num_points[i]={0};
 		details->add(*player_points);
+
 		//add number of discards
+		num_discards[i]={0};
 		details->add(*player_discards);
 		
 		playerframe->add(*details);
@@ -73,9 +77,6 @@ seed_spinButton(seed_adjustment)
 		
 	}
 	vbox.add(*players);
-
-	
-
 
 	// add the bottom panel showing the player's current hand, and allows the player to select the card to play or discard by clicking the card
 	Gtk::HBox* cards = new Gtk::HBox(true, 0);
@@ -100,8 +101,6 @@ seed_spinButton(seed_adjustment)
 	newGame_button.signal_clicked().connect(sigc::mem_fun(*this, &View::newGameButtonClicked));
 
 }
-
-
 
 void View::newGameButtonClicked() {
 	controller_->newGameButtonClicked(seed_spinButton.get_value_as_int());

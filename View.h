@@ -32,7 +32,7 @@ private:
 	std::vector<Gtk::HBox*> suits;
 	
 	std::vector<Gtk::Frame*> playerInfo;
-	Gtk::ToggleButton playerToggle_button [4];
+	Gtk::ToggleButton toggle_button [4];
 	int num_points [4];
 	int num_discards [4];
 
