@@ -26,10 +26,12 @@ seed_spinButton(seed_adjustment)
 	add(vbox);
 	vbox.add(topHBox);
 
+	// add top panel where player can play a new game, quit the game, or enter the seed
 	topHBox.add(newGame_button);
 	topHBox.add(seed_spinButton);
 	topHBox.add(quit_button);
 
+	// add the panel for cards played in the round
 	for (int i=0;i<4;i++) {
 		
 		Gtk::HBox* row = new Gtk::HBox(true, 10);
@@ -44,34 +46,41 @@ seed_spinButton(seed_adjustment)
 
 		suits.push_back(row);
 	}
-	// TODO: add images for each card
 
-
-
-	Gtk::HBox* playerDetails = new Gtk::HBox(true,10);
+	// add the players panel that allows player to toggle between computer/human players, and view each players points and discards
+	Gtk::HBox* players = new Gtk::HBox(true,10);
 	Gtk::VBox* details = new Gtk::VBox(false,5);
 
 	for (int i=1;i<5;i++) {
+		
 		stringstream ss;
 		ss << "Player " << i;
 		Gtk::Frame* playerframe = new Gtk::Frame(ss.str());
-		playerInfo.push_back(playerframe);
-		playerDetails->add(*playerframe);
+		Gtk::Label* player_points = new Gtk::Label(" points");
+		Gtk::Label* player_discards = new Gtk::Label(" discards");
 
-		// frame as container
+		// details->add(*toggle_button[i]);
+		// add number of points
+		details->add(*player_points);
+		//add number of discards
+		details->add(*player_discards);
+		
+		playerframe->add(*details);
+		playerInfo.push_back(playerframe);
+		players->add(*playerframe);
+		
+				
 		
 	}
-	vbox.add(*playerDetails);
-	// add actions
-	// newGame_button.signal_clicked().connect(sigc::mem_fun(*this, &View::newGameButtonClicked));
-	quit_button.signal_clicked().connect(sigc::mem_fun(*this, &View::quitGameButtonClicked));
-	newGame_button.signal_clicked().connect(sigc::mem_fun(*this, &View::newGameButtonClicked));
+	vbox.add(*players);
+
+	
 
 
-
+	// add the bottom panel showing the player's current hand, and allows the player to select the card to play or discard by clicking the card
 	Gtk::HBox* cards = new Gtk::HBox(true, 0);
 	for (int i=0;i<13;i++) {
-		Gtk::Button* button = new Gtk::Button(); // TODO add buttons
+		Gtk::Button* button = new Gtk::Button();
 		playerCards_.push_back(button);
 		cards->add(*button);
 
@@ -85,7 +94,14 @@ seed_spinButton(seed_adjustment)
 	show_all(); // show button
 
 	game_->subscribe(this);
+
+	// add actions
+	quit_button.signal_clicked().connect(sigc::mem_fun(*this, &View::quitGameButtonClicked));
+	newGame_button.signal_clicked().connect(sigc::mem_fun(*this, &View::newGameButtonClicked));
+
 }
+
+
 
 void View::newGameButtonClicked() {
 	controller_->newGameButtonClicked(seed_spinButton.get_value_as_int());
