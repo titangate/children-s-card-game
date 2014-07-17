@@ -55,7 +55,7 @@ void Controller::playerStateChanged(int index) {
 
 void Controller::quitGameButtonClicked() {
 	if (!game_->isGameInProgress()) return;
-	exit(0);
+	game_->endCurrentRound();
 }
 
 Card* Controller::getCardAtIndex(int index) {

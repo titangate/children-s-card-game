@@ -79,12 +79,20 @@ Player* Game::getCurrentPlayer() {
     return players_[currentIndex];
 }
 
+int Game::getCurrentIndex() {
+    return currentIndex;
+}
+
 void Game::setSeed(long seed) {
     srand48(seed);
     cout << "Seed is set to " << seed << endl;
 }
 
 void Game::invitePlayers() {
+    for (int i = 0; i < players_.size(); i++) {
+        delete players_[i];
+    }
+    players_.clear();
     for (int i = 0; i < 4; ++i)
     {
         Player *player = NULL;
@@ -132,7 +140,8 @@ void Game::issueCommand(const Command& command) {
 }
 
 void Game::rageQuit() {
-    cout << "Player "<< getCurrentPlayer()->getName() << " ragequits. A computer will now take over." << endl;
+    stringstream ss;
+    ss << "Player "<< getCurrentPlayer()->getName() << " ragequits. A computer will now take over." << endl;
     Player *player = getCurrentPlayer();
     Player *newPlayer = new ComputerPlayer();
     players_[currentIndex] = newPlayer;
@@ -142,6 +151,7 @@ void Game::rageQuit() {
     delete player;
     currentIndex = (currentIndex - 1) % players_.size();
     
+    alertMessage_ = ss.str();
     notify();
 
     runGameUntilInputRequired();
@@ -197,10 +207,12 @@ void Game::endRound() {
     } else {
         runRound();
     }
+    endCurrentRound();
 }
 
 void Game::endCurrentRound() {
     gameInProgress_ = false;
+    notify();
 }
 
 void Game::runRound() {
@@ -231,10 +243,9 @@ bool Game::isGameInProgress() {
 }
 
 void Game::playerStateChanged(int index) {
+    initialPlayers_[index] = !initialPlayers_[index];
     if (gameInProgress_) {
-
-    } else {
-        initialPlayers_[index] = !initialPlayers_[index];
+        rageQuit();
     }
     notify();
 }

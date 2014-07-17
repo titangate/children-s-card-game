@@ -168,11 +168,12 @@ void View::update() {
 
 		for (int i = 0; i < playerToggleButtons.size(); i++) {
 			playerToggleButtons[i]->set_label("Rage!!");
-			playerToggleButtons[i]->set_sensitive(!game_->getInitialPlayerIsComputer(i));
+			playerToggleButtons[i]->set_sensitive(game_->getCurrentIndex() == i);
 		}
 	} else {
 		for (int i = 0; i < playerToggleButtons.size(); i++) {
 			playerToggleButtons[i]->set_label(game_->getInitialPlayerIsComputer(i) ? "Computer" : "Human");
+			playerToggleButtons[i]->set_sensitive(true);
 		}
 	}
 

@@ -38,6 +38,7 @@ public:
     void playerStateChanged(int index);
     Deck& getDeck();
     Player* getCurrentPlayer();
+    int getCurrentIndex();
     std::vector<Player*> getPlayers();
     bool isGameInProgress();
     bool getInitialPlayerIsComputer(int index);
