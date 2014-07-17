@@ -26,27 +26,35 @@ public:
     void playCard(Card *);
     bool isPlayValid(Card *);
     std::vector<Card*> getCardsPlayed();
+    std::string dequeMessage();
     void setSeed(long);
     void issueCommand(const Command&);
     void runGameUntilInputRequired();
     void invitePlayers();
     void runRound();
     void endRound();
+    void endCurrentRound();
     void rageQuit();
+    void playerStateChanged(int index);
     Deck& getDeck();
     Player* getCurrentPlayer();
     std::vector<Player*> getPlayers();
+    bool isGameInProgress();
+    bool getInitialPlayerIsComputer(int index);
 private:
     std::vector<Card*> cardsPlayed_;
     std::vector<Player*> players_;
+    std::string alertMessage_;
+    bool gameInProgress_;
     int currentIndex;
     int turnCount;
     
     int dealDeck();
     bool playField_[4][13];
+    bool initialPlayers_[4];
     Deck deck_;
     bool sevenOfSpadePlayed_;
-    Game() {}
+    Game();
     Game(Game const&);
     void operator=(Game const&);
 };

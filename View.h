@@ -36,7 +36,7 @@ private:
 	std::vector<Gtk::HBox*> suits;
 	
 	std::vector<Gtk::Frame*> playerInfo;
-	std::vector<Gtk::ToggleButton*> playerToggleButtons;
+	std::vector<Gtk::Button*> playerToggleButtons;
 	std::vector<Gtk::Label*> pointLabels;
 	std::vector<Gtk::Label*> discardLabels;
 
@@ -51,7 +51,8 @@ private:
 	void quitGameButtonClicked();
 	void playCardClicked(int index);
 	void playerToggleClicked(int index);
-	void alert(std::string message);
+	void alert(const std::string &message);
+	void playerStateChanged(int index);
 }; // View
 
 #endif

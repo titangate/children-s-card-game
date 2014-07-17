@@ -60,9 +60,10 @@ seed_spinButton(seed_adjustment)
 		Gtk::Label* player_points = new Gtk::Label(" points");
 		Gtk::Label* player_discards = new Gtk::Label(" discards");
 
-		Gtk::ToggleButton* player_toggle = new Gtk::ToggleButton("Human");
+		Gtk::Button* player_toggle = new Gtk::Button("Human");
 		playerToggleButtons.push_back(player_toggle);
 		details->add(*player_toggle);
+
 		// add number of points
 		details->add(*player_points);
 		pointLabels.push_back(player_points);
@@ -75,7 +76,7 @@ seed_spinButton(seed_adjustment)
 		playerInfo.push_back(playerframe);
 		players->add(*playerframe);
 
-		// player_toggle->signal_clicked().connect(sigc::bind( sigc::mem_fun(*this, &View::playerToggleClicked), i));
+		player_toggle->signal_clicked().connect(sigc::bind(sigc::mem_fun(*this, &View::playerStateChanged), i-1));
 	}
 	vbox.add(*players);
 
@@ -112,13 +113,11 @@ void View::quitGameButtonClicked() {
 	controller_->quitGameButtonClicked();
 }
 
-/* void View::playerToggleClicked(int index) {
-	// controller_->playerToggleClicked(index);
+void View::playerStateChanged(int index) {
+	controller_->playerStateChanged(index);
 	// before game begins, toggles human player to computer and vice versa
-	controller_->rageClicked(index);
 	// after game begins human player has option to ragequit on turn
 }
-*/
 
 void View::playCardClicked(int index) {
 	controller_->playCardClicked(index);
@@ -127,44 +126,64 @@ void View::playCardClicked(int index) {
 void View::update() {
 	// update the player's hand
 	cout << "updating..." << endl;
-	vector<Card*> hand = game_->getCurrentPlayer()->getHand();
 	for (int i = 0; i < playerCardImages_.size(); i++) {
 		playerCardImages_[i]->set(deck.null());
 	}
 
-	vector<Player*> players = game_->getPlayers();
-	for (int i = 0; i < players.size(); i++)
-	{
-		stringstream ss;
-		ss << players[i]->getAccumulatedScore() << " points";
-		pointLabels[i]->set_text(ss.str());
-
-		ss.str("");
-		ss << players[i]->getDiscard().size() << " discards";
-		discardLabels[i]->set_text(ss.str());
-	}
-
-	for (int i = 0; i < hand.size(); i++) {
-		Card *card = hand[i];
-		if (card) {
-			playerCardImages_[i]->set(deck.image(*card));
-		} else {
-			playerCardImages_[i]->set(deck.null());
-		}
-	}
-
-	// update the player field
 	for (int i = 0; i < cardImages_.size(); i++) {
 		cardImages_[i]->set(deck.null());
 	}
-	vector<Card*> field = game_->getCardsPlayed();
-	for (int i = 0; i < field.size(); i++) {
-		Card *card = field[i];
-		cardImages_[(int)card->getSuit() * 13 + (int)card->getRank()]->set(deck.image(*card));
+
+	for (int i = 0; i < playerCardImages_.size(); i++) {
+		playerCardImages_[i]->set(deck.null());
+	}
+	if (game_->isGameInProgress()) {
+		vector<Player*> players = game_->getPlayers();
+		for (int i = 0; i < players.size(); i++)
+		{
+			stringstream ss;
+			ss << players[i]->getAccumulatedScore() << " points";
+			pointLabels[i]->set_text(ss.str());
+
+			ss.str("");
+			ss << players[i]->getDiscard().size() << " discards";
+			discardLabels[i]->set_text(ss.str());
+		}
+
+		vector<Card*> hand = game_->getCurrentPlayer()->getHand();
+		for (int i = 0; i < hand.size(); i++) {
+			Card *card = hand[i];
+			if (card) {
+				playerCardImages_[i]->set(deck.image(*card));
+			} else {
+				break;
+			}
+		}
+
+		// update the player field
+		vector<Card*> field = game_->getCardsPlayed();
+		for (int i = 0; i < field.size(); i++) {
+			Card *card = field[i];
+			cardImages_[(int)card->getSuit() * 13 + (int)card->getRank()]->set(deck.image(*card));
+		}
+
+		for (int i = 0; i < playerToggleButtons.size(); i++) {
+			playerToggleButtons[i]->set_label("Rage!!");
+			playerToggleButtons[i]->set_sensitive(!game_->getInitialPlayerIsComputer(i));
+		}
+	} else {
+		for (int i = 0; i < playerToggleButtons.size(); i++) {
+			playerToggleButtons[i]->set_label(game_->getInitialPlayerIsComputer(i) ? "Computer" : "Human");
+		}
+	}
+
+	string message = game_->dequeMessage();
+	if (message.length() > 0) {
+		cout << message << endl;
 	}
 }
 
-void View::alert(string message) {
+void View::alert(const std::string &messag) {
 	Gtk::MessageDialog dialog(*this, message);
 	dialog.run();
 }

@@ -13,6 +13,7 @@
 Controller::Controller(Game *m) : game_(m) {}
 
 void Controller::playCardClicked(int index) {
+	if (!game_->isGameInProgress()) return;
 	Card *card = getCardAtIndex(index);
 	if (card) {
 		Command cmd;
@@ -27,6 +28,7 @@ void Controller::playCardClicked(int index) {
 }
 
 void Controller::discardCardClicked(int index) {
+	if (!game_->isGameInProgress()) return;
 	Card *card = getCardAtIndex(index);
 	if (card) {
 		Command cmd;
@@ -40,10 +42,6 @@ void Controller::discardCardClicked(int index) {
 	}
 }
 
-void Controller::rageClicked(int index) {
-	game_->rageQuit();
-}
-
 void Controller::newGameButtonClicked(long seed) {
 	game_->setSeed(seed);
     Game::getInstance().getDeck().reset();
@@ -51,7 +49,12 @@ void Controller::newGameButtonClicked(long seed) {
 	Game::getInstance().runRound();
 }
 
+void Controller::playerStateChanged(int index) {
+	game_->playerStateChanged(index);
+}
+
 void Controller::quitGameButtonClicked() {
+	if (!game_->isGameInProgress()) return;
 	exit(0);
 }
 

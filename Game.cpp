@@ -16,6 +16,13 @@
 
 using namespace std;
 
+Game::Game() {
+    gameInProgress_ = false;
+    for (int i = 0; i < 4; i++) {
+        initialPlayers_[i] = false;
+    }
+}
+
 void Game::reset() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 13; j++) {
@@ -78,8 +85,13 @@ void Game::setSeed(long seed) {
 }
 
 void Game::invitePlayers() {
-    while (players_.size() < 4) {
-        players_.push_back(new HumanPlayer());
+    for (int i = 0; i < 4; ++i)
+    {
+        if (initialPlayers_[i]) {
+            players_.push_back(new ComputerPlayer());
+        } else {
+            players_.push_back(new HumanPlayer());
+        }
     }
 }
 
@@ -141,31 +153,36 @@ void Game::runGameUntilInputRequired() {
 
 void Game::endRound() {
     // produce results
-    static int scores[4] = {0,0,0,0};
     int gameOver = false;
+    stringstream ss;
     for (int i = 0; i < players_.size(); i++) {
-        cout << "Player " << players_[i]->getName() << "'s discards:";
+        ss << "Player " << players_[i]->getName() << "'s discards:";
         std::vector<Card*> discards = players_[i]->getDiscard();
         for (int i = 0; i < discards.size(); i++) {
-            cout << " " << *discards[i];
+            ss << " " << *discards[i];
         }
-        cout << endl;
+        ss << endl;
         int scoreThisRound = players_[i]->getScore();
-        cout << "Player " << players_[i]->getName() << "'s score: " << scores[i] << " + " << scoreThisRound << " = ";
-        scores[i] += scoreThisRound;
-        cout << scores[i] << endl;
-        gameOver |= (scores[i] >= 80);
+        ss << "Player " << players_[i]->getName() << "'s score: " << players_[i]->getScore() << " + " << scoreThisRound << " = ";
+        players_[i]->setAccumulatedScore(players_[i]->getAccumulatedScore() + scoreThisRound);
+        ss << players_[i]->getAccumulatedScore() << endl;
+        gameOver |= (players_[i]->getAccumulatedScore() >= 80);
     }
+    alertMessage_ = ss.str();
+    notify();
     if (gameOver) {
         int minimum = 1023456789;
         for (int i = 0; i < players_.size(); i++) {
-            if (minimum > scores[i]) {
-                minimum = scores[i];
+            if (minimum > players_[i]->getScore()) {
+                minimum = players_[i]->getScore();
             }
         }
         for (int i = 0; i < players_.size(); i++) {
-            if (minimum == scores[i]) {
-                cout << "Player " << players_[i]->getName() << " wins!" << endl;
+            if (minimum == players_[i]->getScore()) {
+                stringstream ss;
+                ss << "Player " << players_[i]->getName() << " wins!" << endl;
+                alertMessage_ = ss.str();
+                notify();
             }
         }
     } else {
@@ -173,8 +190,13 @@ void Game::endRound() {
     }
 }
 
+void Game::endCurrentRound() {
+    gameInProgress_ = false;
+}
+
 void Game::runRound() {
     turnCount = 0;
+    gameInProgress_ = true;
     Game::getInstance().reset();
     currentIndex = dealDeck();
     cout << "A new round begins. It's player "<< players_[currentIndex]->getName() <<"'s turn to play." << endl;
@@ -183,6 +205,29 @@ void Game::runRound() {
     runGameUntilInputRequired();
 }
 
+std::string Game::dequeMessage() {
+    string temp = alertMessage_;
+    alertMessage_ = "";
+    return temp;
+}
+
 std::vector<Player*> Game::getPlayers() {
     return players_;
+}
+
+bool Game::isGameInProgress() {
+    return gameInProgress_;
+}
+
+void Game::playerStateChanged(int index) {
+    if (gameInProgress_) {
+
+    } else {
+        initialPlayers_[index] = !initialPlayers_[index];
+    }
+    notify();
+}
+
+bool Game::getInitialPlayerIsComputer(int index) {
+    return initialPlayers_[index];
 }

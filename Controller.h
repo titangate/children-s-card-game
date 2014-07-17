@@ -19,9 +19,9 @@ public:
     Controller( Game* );
     void playCardClicked(int index);
     void discardCardClicked(int index);
-    void rageClicked(int index);
     void newGameButtonClicked(long seed);
     void quitGameButtonClicked();
+    void playerStateChanged(int index);
 private:
 	Card* getCardAtIndex(int index);
     Game *game_;

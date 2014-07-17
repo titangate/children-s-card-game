@@ -33,7 +33,7 @@ int Player::getAccumulatedScore() {
 }
 
 void Player::setAccumulatedScore(int score) {
-    accumulatedScore_ + score;
+    accumulatedScore_ = score;
 }
 
 Card* Player::findCard(Suit suit, Rank rank) {
