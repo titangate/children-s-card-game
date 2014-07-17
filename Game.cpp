@@ -182,7 +182,7 @@ void Game::endRound() {
         }
         ss << endl;
         int scoreThisRound = players_[i]->getScore();
-        ss << "Player " << players_[i]->getName() << "'s score: " << players_[i]->getScore() << " + " << scoreThisRound << " = ";
+        ss << "Player " << players_[i]->getName() << "'s score: " << players_[i]->getAccumulatedScore() << " + " << scoreThisRound << " = ";
         players_[i]->setAccumulatedScore(players_[i]->getAccumulatedScore() + scoreThisRound);
         ss << players_[i]->getAccumulatedScore() << endl;
         gameOver |= (players_[i]->getAccumulatedScore() >= 80);
