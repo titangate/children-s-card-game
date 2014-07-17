@@ -105,6 +105,7 @@ seed_spinButton(seed_adjustment)
 
 void View::newGameButtonClicked() {
 	controller_->newGameButtonClicked(seed_spinButton.get_value_as_int());
+	alert("A new game has started.");
 }
 
 void View::quitGameButtonClicked() {
@@ -161,6 +162,11 @@ void View::update() {
 		Card *card = field[i];
 		cardImages_[(int)card->getSuit() * 13 + (int)card->getRank()]->set(deck.image(*card));
 	}
+}
+
+void View::alert(string message) {
+	Gtk::MessageDialog dialog(*this, message);
+	dialog.run();
 }
 
 View::~View() {}

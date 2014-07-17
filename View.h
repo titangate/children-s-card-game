@@ -50,6 +50,8 @@ private:
 	void newGameButtonClicked();
 	void quitGameButtonClicked();
 	void playCardClicked(int index);
+	void playerToggleClicked(int index);
+	void alert(std::string message);
 }; // View
 
 #endif
