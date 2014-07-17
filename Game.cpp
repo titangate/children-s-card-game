@@ -87,11 +87,17 @@ void Game::setSeed(long seed) {
 void Game::invitePlayers() {
     for (int i = 0; i < 4; ++i)
     {
+        Player *player = NULL;
         if (initialPlayers_[i]) {
-            players_.push_back(new ComputerPlayer());
+            player = new ComputerPlayer();
         } else {
-            players_.push_back(new HumanPlayer());
+            player = new HumanPlayer();
         }
+        stringstream ss;
+        ss << i+1;
+        string str = ss.str();
+        player->setName(str);
+        players_.push_back(player);
     }
 }
 
@@ -145,7 +151,10 @@ void Game::runGameUntilInputRequired() {
     currentIndex = (currentIndex + 1) % players_.size();
     cout << "Player " << currentIndex << "'s turn" << endl;
     notify();
-    while (!getCurrentPlayer()->pollCommand() && turnCount < 52) {
+
+    if (turnCount >= 52) {
+        endRound();
+    } else if (!getCurrentPlayer()->pollCommand()) {
         turnCount++;
         runGameUntilInputRequired();
     }
@@ -199,7 +208,9 @@ void Game::runRound() {
     gameInProgress_ = true;
     Game::getInstance().reset();
     currentIndex = dealDeck();
-    cout << "A new round begins. It's player "<< players_[currentIndex]->getName() <<"'s turn to play." << endl;
+    stringstream ss;
+    ss << "A new round begins. It's player "<< players_[currentIndex]->getName() <<"'s turn to play." << endl;
+    alertMessage_ = ss.str();
     assert(currentIndex >= 0);
     currentIndex--;
     runGameUntilInputRequired();

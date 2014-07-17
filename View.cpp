@@ -106,7 +106,6 @@ seed_spinButton(seed_adjustment)
 
 void View::newGameButtonClicked() {
 	controller_->newGameButtonClicked(seed_spinButton.get_value_as_int());
-	alert("A new game has started.");
 }
 
 void View::quitGameButtonClicked() {
@@ -179,11 +178,11 @@ void View::update() {
 
 	string message = game_->dequeMessage();
 	if (message.length() > 0) {
-		cout << message << endl;
+		alert(message);
 	}
 }
 
-void View::alert(const std::string &messag) {
+void View::alert(const std::string &message) {
 	Gtk::MessageDialog dialog(*this, message);
 	dialog.run();
 }
