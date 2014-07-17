@@ -60,7 +60,9 @@ seed_spinButton(seed_adjustment)
 		Gtk::Label* player_points = new Gtk::Label(" points");
 		Gtk::Label* player_discards = new Gtk::Label(" discards");
 
-		// details->add(toggle_button[i]);
+		Gtk::ToggleButton* player_toggle = new Gtk::ToggleButton("Human");
+		playerToggleButtons.push_back(player_toggle);
+		details->add(*player_toggle);
 		// add number of points
 		details->add(*player_points);
 		pointLabels.push_back(player_points);
@@ -72,9 +74,8 @@ seed_spinButton(seed_adjustment)
 		playerframe->add(*details);
 		playerInfo.push_back(playerframe);
 		players->add(*playerframe);
-		
-				
-		
+
+		// player_toggle->signal_clicked().connect(sigc::bind( sigc::mem_fun(*this, &View::playerToggleClicked), i));
 	}
 	vbox.add(*players);
 
@@ -109,6 +110,14 @@ void View::newGameButtonClicked() {
 void View::quitGameButtonClicked() {
 	controller_->quitGameButtonClicked();
 }
+
+/* void View::playerToggleClicked(int index) {
+	// controller_->playerToggleClicked(index);
+	// before game begins, toggles human player to computer and vice versa
+	controller_->rageClicked(index);
+	// after game begins human player has option to ragequit on turn
+}
+*/
 
 void View::playCardClicked(int index) {
 	controller_->playCardClicked(index);

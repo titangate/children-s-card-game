@@ -27,24 +27,21 @@ private:
 
 	Gtk::HBox topHBox;
 	Gtk::Button newGame_button;
+	Gtk::Button quit_button;
+	Gtk::Adjustment seed_adjustment;
+	Gtk::SpinButton seed_spinButton;
 	
 	std::vector<Gtk::Image*> cardImages_;
+	Gtk::Image card;
 	std::vector<Gtk::HBox*> suits;
 	
 	std::vector<Gtk::Frame*> playerInfo;
-	Gtk::ToggleButton toggle_button [4];
-
+	std::vector<Gtk::ToggleButton*> playerToggleButtons;
 	std::vector<Gtk::Label*> pointLabels;
 	std::vector<Gtk::Label*> discardLabels;
 
 	std::vector<Gtk::Button*> playerCards_;
 	std::vector<Gtk::Image*> playerCardImages_;
-
-	
-	Gtk::Button quit_button;
-	Gtk::Adjustment seed_adjustment;
-	Gtk::SpinButton seed_spinButton;
-	Gtk::Image card;
 
 	// Card Images
 	DeckGUI deck;
