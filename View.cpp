@@ -136,7 +136,7 @@ void View::update() {
 	for (int i = 0; i < players.size(); i++)
 	{
 		stringstream ss;
-		ss << players[i]->getScore() << " points";
+		ss << players[i]->getAccumulatedScore() << " points";
 		pointLabels[i]->set_text(ss.str());
 
 		ss.str("");

@@ -24,6 +24,8 @@ public:
     std::vector<Card*> getLegalPlays();
     virtual bool pollCommand() = 0;
     int getScore();
+    int getAccumulatedScore();
+    void setAccumulatedScore(int score);
     void setHand(const std::vector<Card*>&);
     void setDiscard(const std::vector<Card*>&);
     Card *findCard(Suit suit, Rank rank);
@@ -35,6 +37,7 @@ private:
     std::vector<Card*> hand_;
     std::vector<Card*> discard_;
     std::string name_;
+    int accumulatedScore_; 
 protected:
     void play(Suit suit, Rank rank);
     void discard(Suit suit, Rank rank);

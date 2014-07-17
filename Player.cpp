@@ -28,6 +28,14 @@ int Player::getScore() {
     return score;
 }
 
+int Player::getAccumulatedScore() {
+    return accumulatedScore_;
+}
+
+void Player::setAccumulatedScore(int score) {
+    accumulatedScore_ + score;
+}
+
 Card* Player::findCard(Suit suit, Rank rank) {
     for (int i = 0; i < hand_.size(); i++) {
         Card *card = hand_[i];
