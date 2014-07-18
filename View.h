@@ -23,28 +23,28 @@ private:
 	Controller *controller_;
 
 	// member widgets
-	Gtk::VBox vbox;
+	Gtk::VBox vbox_;
 
-	Gtk::HBox topHBox;
-	Gtk::Button newGame_button;
-	Gtk::Button quit_button;
-	Gtk::Adjustment seed_adjustment;
-	Gtk::SpinButton seed_spinButton;
+	Gtk::HBox topPanel_;
+	Gtk::Button newGameButton_;
+	Gtk::Button quitButton_;
+	Gtk::Adjustment seedAdjustment_;
+	Gtk::SpinButton seedSpinButton_;
 	
 	std::vector<Gtk::Image*> cardImages_;
-	Gtk::Image card;
-	std::vector<Gtk::HBox*> suits;
 	
-	std::vector<Gtk::Frame*> playerInfo;
-	std::vector<Gtk::Button*> playerToggleButtons;
-	std::vector<Gtk::Label*> pointLabels;
-	std::vector<Gtk::Label*> discardLabels;
+	std::vector<Gtk::HBox*> suits_;
+	
+	std::vector<Gtk::Frame*> playerInfo_;
+	std::vector<Gtk::Button*> playerToggleButtons_;
+	std::vector<Gtk::Label*> pointLabels_;
+	std::vector<Gtk::Label*> discardLabels_;
 
 	std::vector<Gtk::Button*> playerCards_;
 	std::vector<Gtk::Image*> playerCardImages_;
 
 	// Card Images
-	DeckGUI deck;
+	DeckGUI deck_;
 
 	// signal handlers
 	void newGameButtonClicked();
